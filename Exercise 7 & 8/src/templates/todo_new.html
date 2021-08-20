@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <a href="{% url 'todo:index' %}" class="btn btn-secondary mt-3 mb-3">Go Back</a>
+    <div class="card">
+        <div class="card-body">
+            <div class="card-text">
+                <form action="{% url 'todo:todo_save' 0 %}" method="post">
+                    <div class="mb-3">
+                        <label for="todo_text" class="fs-2">NEW TODO</label>
+                        <textarea name="todo_text" id="todo_text" class="form-control" cols="60"
+                                  rows="20">{{ todo.todo_text }}</textarea>
+                    </div>
+                    {% csrf_token %}
+                    {{ form }}
+                    <input type="submit" value="Save" class="btn btn-success btn-lg float-end"/>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

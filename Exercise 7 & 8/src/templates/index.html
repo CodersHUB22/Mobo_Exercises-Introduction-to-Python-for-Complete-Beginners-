@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="text-center mb-3">
+        TODO
+    </h1>
+
+    <div class="text-end mb-3">
+        <a href="{% url 'todo:todo_new' %}" class="btn btn-primary">New</a>
+    </div>
+
+    {% if todos %}
+        {% for todo in todos %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="card-text">
+                        <a href="{% url 'todo:todo' todo.id %}">{{ todo.todo_text }}</a>
+                        <div class="float-end">
+                            <a href="{% url 'todo:todo_delete' todo.id %}" class="btn btn-danger">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}
